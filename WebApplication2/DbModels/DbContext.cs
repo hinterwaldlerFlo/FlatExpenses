@@ -39,7 +39,15 @@ namespace FlatExpenses.DbModels
         {
             get
             {
-                return _database.GetCollection<Invoice>("Invoice");
+                return _database.GetCollection<Invoice>("Invoices");
+            }
+        }
+
+        public IMongoCollection<Balance> Balances
+        {
+            get
+            {
+                return _database.GetCollection<Balance>("Balances");
             }
         }
     }
