@@ -35,6 +35,7 @@ namespace FlatExpenses
             services.AddMvc();
             services.Configure<Settings>(o => { o.iConfigurationRoot = Configuration; });
             services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

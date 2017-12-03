@@ -34,5 +34,13 @@ namespace FlatExpenses.DbModels
                 return _database.GetCollection<Student>("Student");
             }
         }
+
+        public IMongoCollection<Invoice> Invoices
+        {
+            get
+            {
+                return _database.GetCollection<Invoice>("Invoice");
+            }
+        }
     }
 }
