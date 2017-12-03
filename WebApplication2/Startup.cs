@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplication2.IRepository;
-using WebApplication2.DbModels;
-using WebApplication2.Repository;
+using FlatExpenses.IRepository;
+using FlatExpenses.DbModels;
+using FlatExpenses.Repository;
 
-namespace WebApplication2
+namespace FlatExpenses
 {
     public class Startup
     {

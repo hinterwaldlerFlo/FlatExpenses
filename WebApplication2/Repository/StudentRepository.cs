@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication2.DbModels;
-using WebApplication2.IRepository;
+using FlatExpenses.DbModels;
+using FlatExpenses.IRepository;
 using MongoDB.Driver;
-using WebApplication2.Models;
+using FlatExpenses.Models;
 using MongoDB.Bson;
 
-namespace WebApplication2.Repository
+namespace FlatExpenses.Repository
 {
     public class StudentRepository : IStudentRepository
     {

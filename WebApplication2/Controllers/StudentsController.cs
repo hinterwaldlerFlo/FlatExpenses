@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication2.IRepository;
-using WebApplication2.Models;
+using FlatExpenses.IRepository;
+using FlatExpenses.Models;
 
-namespace WebApplication2.Controllers
+namespace FlatExpenses.Controllers
 {
     [Route("api/[controller]")]
     public class StudentsController

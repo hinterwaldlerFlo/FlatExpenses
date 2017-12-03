@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication2.Models;
+using FlatExpenses.Models;
 
-namespace WebApplication2.DbModels
+namespace FlatExpenses.DbModels
 {
     public class ObjectContext
     {
