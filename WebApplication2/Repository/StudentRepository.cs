@@ -13,11 +13,11 @@ namespace FlatExpenses.Repository
 {
     public class StudentRepository : IStudentRepository
     {
-        private readonly ObjectContext _context = null;
+        private readonly DbContext _context = null;
 
         public StudentRepository(IOptions<Settings> settings)
         {
-            _context = new ObjectContext(settings);
+            _context = new DbContext(settings);
         }
 
         public async Task Add(Student student)

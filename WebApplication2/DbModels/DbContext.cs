@@ -9,12 +9,12 @@ using FlatExpenses.Models;
 
 namespace FlatExpenses.DbModels
 {
-    public class ObjectContext
+    public class DbContext
     {
         public IConfigurationRoot Configuration { get; }
         private IMongoDatabase _database = null;
 
-        public ObjectContext(IOptions<Settings> settings)
+        public DbContext(IOptions<Settings> settings)
         {
             Configuration = settings.Value.iConfigurationRoot;
             settings.Value.Connectionstring = Configuration.GetSection("MongoConnection:ConnectionString").Value;
