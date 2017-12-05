@@ -37,6 +37,13 @@ namespace FlatExpenses.Repository
             return await _context.Invoices.Find(invoice).FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<Invoice>> GetList(DateTime FromDate, DateTime ToDate)
+        {
+            return await _context.Invoices
+                .Find(x => (x.Date >= FromDate && x.Date <= ToDate))
+                .ToListAsync();
+        }
+
         public async Task<DeleteResult> Remove(string id)
         {
             return await _context.Invoices.DeleteOneAsync(Builders<Invoice>.Filter.Eq("Id", id));

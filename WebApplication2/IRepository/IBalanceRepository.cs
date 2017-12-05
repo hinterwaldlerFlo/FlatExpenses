@@ -9,9 +9,9 @@ namespace FlatExpenses.IRepository
     public interface IBalanceRepository
     {
         Task<IEnumerable<Balance>> Get();
-        // Task<Balance> Get(string id);
+        Task<IEnumerable<Balance>> Get(DateTime fromDate, DateTime toDate);
         Task Add(Balance Balance);
-        Task Add(DateTime startDate, DateTime endTime);
+        Task<Balance> Add(DateTime startDate, DateTime endTime);
         // Task<string> Update(string id, Balance Balance);
         // Task<DeleteResult> Remove(string id);
         // Task<DeleteResult> RemoveAll();

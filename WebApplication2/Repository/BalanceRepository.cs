@@ -14,9 +14,19 @@ namespace FlatExpenses.Repository
     {
         private readonly DbContext _context = null;
 
-        public BalanceRepository(IOptions<Settings> settings)
+        private IInvoiceRepository invoiceRepository = null;
+
+        public BalanceRepository(IOptions<Settings> settings, IInvoiceRepository invoiceRepository)
         {
             _context = new DbContext(settings);
+            this.invoiceRepository = invoiceRepository;
+        }
+
+        public async Task<IEnumerable<Balance>> Get(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.Balances
+                .Find(x => (x.StartDate >= fromDate && x.EndDate <= toDate))
+                .ToListAsync();
         }
 
         public async Task Add(Balance balance)
@@ -24,9 +34,24 @@ namespace FlatExpenses.Repository
             await _context.Balances.InsertOneAsync(balance);
         }
 
-        public async Task Add(DateTime startTime, DateTime endTime)
+        public async Task<Balance> Add(DateTime startTime, DateTime endTime)
         {
-            await _context.Balances.InsertOneAsync(new Balance());
+            var invoices = invoiceRepository.GetList(startTime, endTime).Result;
+            var balance = new Balance();
+            balance.StartDate = startTime;
+            balance.EndDate = endTime;
+            balance.TotalAmout = invoices.Select(x => x.Amount).Sum();
+            IEnumerable<string> users = invoices.Select(x => x.User)
+                                            .Distinct();
+            balance.Attendees = users.Select(x =>
+            {
+                var attendee = new BalanceAttendee();
+                attendee.User = x;
+                attendee.PartialAmount = invoices.Where(y => y.User == x).Select(y => y.Amount).Sum();
+                return attendee;
+            }).ToList();
+            await _context.Balances.InsertOneAsync(balance);
+            return balance;
         }
 
         public async Task<IEnumerable<Balance>> Get()

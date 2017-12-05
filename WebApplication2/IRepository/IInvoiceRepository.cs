@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlatExpenses.Models;
+using System;
 
 namespace FlatExpenses.IRepository
 {
@@ -9,6 +10,7 @@ namespace FlatExpenses.IRepository
     {
         Task<IEnumerable<Invoice>> Get();
         Task<Invoice> Get(string id);
+        Task<IEnumerable<Invoice>> GetList(DateTime FromDate, DateTime ToDate);
         Task Add(Invoice Invoice);
         Task<string> Update(string id, Invoice Invoice);
         Task<DeleteResult> Remove(string id);

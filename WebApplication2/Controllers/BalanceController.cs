@@ -44,14 +44,20 @@ namespace FlatExpenses.Controllers
         //    return JsonConvert.SerializeObject(invoice);
         //}
 
-        [HttpPost]
-        public async Task<string> Post([FromBody] JObject data)
+        [HttpGet("{startDate}/{endDate}")]
+        public async Task<IEnumerable<Balance>> GetBalancesByTimeRange(DateTime startDate, DateTime endDate)
+        {
+            return await _balanceRepository.Get(startDate, endDate);
+        }
+
+        [HttpPut]
+        public async Task<Balance> CalculateBalance([FromBody] JObject data)
         {
             DateTime startDate = data["StartDate"].ToObject<DateTime>();
             DateTime endDate = data["EndDate"].ToObject<DateTime>();
 
-            await _balanceRepository.Add(startDate, endDate);
-            return "";
+            return await _balanceRepository.Add(startDate, endDate);
+            
         }
 
         //[HttpPut("id")]
