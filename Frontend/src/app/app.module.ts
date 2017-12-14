@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { InvoicesComponent } from './invoices/invoices.component';
 import { MatTableModule } from '@angular/material/table';
+import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
 
 @NgModule({
   declarations: [
@@ -14,12 +16,13 @@ import { MatTableModule } from '@angular/material/table';
   ],
   imports: [
     BrowserModule,
-    MatTableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    MatTableModule
   ],
   exports: [
   ],
-  providers: [],
+  providers: [InvoiceApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
