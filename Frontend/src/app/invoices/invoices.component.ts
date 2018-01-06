@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
 import { InvoiceApiService } from '../shared/invoice-api/invoice-api.service';
+import { Invoice } from '../shared/invoice-api/invoice.model';
 @Component({
   selector: 'app-invoices',
   templateUrl: './invoices.component.html',
@@ -11,7 +12,7 @@ export class InvoicesComponent implements OnInit{
 
   public displayedColums;
   public dataSource: MatTableDataSource<Element>;
-  public invoices:  Element[] = new Array;
+  // public invoices:  Element[] = new Array;
 
   constructor(
     private invoiceApi: InvoiceApiService
@@ -21,15 +22,16 @@ export class InvoicesComponent implements OnInit{
 
   ngOnInit() {
     this.displayedColums = [ 'date', 'user', 'amount'];
-    this.dataSource = new MatTableDataSource<Element>(this.invoices);
+    // this.dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
     this.invoiceApi.getInvoices().subscribe(data => {
-      console.error(data);
-      data.forEach(data_row => {
-        this.invoices.push(<Element>{ date: data_row.date,
-                                      user: data_row.user,
-                                      amount: data_row.amount
+      let invoices = new Array<Element>();
+      data.forEach((data_row: Invoice) => {
+        invoices.push(<Element>{ date: data_row.Date,
+                                      user: data_row.User,
+                                      amount: data_row.Amount
                                     });
       });
+      this.dataSource = new MatTableDataSource<Element>(invoices);
     });
   }
 
@@ -42,7 +44,7 @@ export interface Element {
 }
 
 const ELEMENT_DATA: Element[] = [
-  // {date: 1, user: 'Hydrogen', amount: 1.0079},
-  // {date: 2, user: 'Helium', amount: 4.0026},
-  // {date: 3, user: 'Lithium', amount: 6.941}
+  {date: new Date(), user: 'Hydrogen', amount: 1.0079},
+  {date: new Date(), user: 'Helium', amount: 4.0026},
+  {date: new Date(), user: 'Lithium', amount: 6.941}
 ];

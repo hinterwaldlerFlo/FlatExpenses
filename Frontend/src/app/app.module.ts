@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { InvoicesComponent } from './invoices/invoices.component';
-import { MatTableModule } from '@angular/material/table';
 import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
+
+import { MatTableModule } from '@angular/material/table';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    NgbModule.forRoot(),
   ],
   exports: [
   ],

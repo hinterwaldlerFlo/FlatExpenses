@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 // import 'rxjs/add/operator/map';
 
-import { Invoice } from './Invoice';
+import { Invoice } from './invoice.model';
 
 @Injectable()
 export class InvoiceApiService {
 
-  private baseUrl = 'http://localhost/api/Invoices';  // URL to web api
+  private baseUrl = '/api/Invoices';  // URL to web api
 
   constructor(private httpClient: HttpClient) { }
 
