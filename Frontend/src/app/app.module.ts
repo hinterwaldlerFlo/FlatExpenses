@@ -8,7 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
 
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
@@ -24,6 +26,12 @@ import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
     AppRoutingModule,
     HttpClientModule,
     MatTableModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    FormsModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
   ],
   exports: [

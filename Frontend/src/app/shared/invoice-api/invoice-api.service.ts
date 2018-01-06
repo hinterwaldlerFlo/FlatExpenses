@@ -30,4 +30,13 @@ export class InvoiceApiService {
       // });
     // return invoices;
   }
+
+  setInvoice(newInvoice): void {
+    this.httpClient.post(this.baseUrl, newInvoice)
+      .subscribe();
+              // .map(res => {
+              //   console.error(res);
+              //   // return new Invoice("5", null, null, null);
+              // });
+  }
 }
