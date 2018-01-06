@@ -11,3 +11,4 @@ export class Invoice {
         this.Amount = amount;
     }
 }
+
