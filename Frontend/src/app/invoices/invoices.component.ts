@@ -15,9 +15,7 @@ export class InvoicesComponent implements OnInit{
 
   constructor(
     private invoiceApi: InvoiceApiService
-  ) {
-    // debugger;
-  }
+  ) { }
 
   ngOnInit() {
     this.displayedColums = [ 'date', 'user', 'amount'];

@@ -11,11 +11,13 @@ import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
 import { MatTableModule } from '@angular/material/table';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InvoicesComponent,
+    InvoiceAddComponent,
   ],
   imports: [
     BrowserModule,
