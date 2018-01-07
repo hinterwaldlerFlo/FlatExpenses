@@ -8,7 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoiceApiService } from './shared/invoice-api/invoice-api.service';
 
-import { MatTableModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule } from '@angular/material';
+import {  MatTableModule,
+          MatInputModule,
+          MatDatepickerModule,
+          MatNativeDateModule,
+          MatButtonModule,
+          MatDialogModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -31,6 +36,7 @@ import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
     MatNativeDateModule,
     MatButtonModule,
     FormsModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
   ],
