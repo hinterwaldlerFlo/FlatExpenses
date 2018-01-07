@@ -13,18 +13,21 @@ import {  MatTableModule,
           MatDatepickerModule,
           MatNativeDateModule,
           MatButtonModule,
-          MatDialogModule } from '@angular/material';
+          MatDialogModule,
+          MatTabsModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
+import { BalancesComponent } from './balances/balances.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InvoicesComponent,
     InvoiceAddComponent,
+    BalancesComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
     MatButtonModule,
     FormsModule,
     MatDialogModule,
+    MatTabsModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
   ],
