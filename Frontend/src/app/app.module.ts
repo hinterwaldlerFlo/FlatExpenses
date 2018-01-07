@@ -22,6 +22,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
 import { BalancesComponent } from './balances/balances.component';
 import { BalanceApiService } from './shared/balance-api/balance-api.service';
+import { BalanceCalculateComponent } from './balance-calculate/balance-calculate.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BalanceApiService } from './shared/balance-api/balance-api.service';
     InvoicesComponent,
     InvoiceAddComponent,
     BalancesComponent,
+    BalanceCalculateComponent,
   ],
   imports: [
     BrowserModule,

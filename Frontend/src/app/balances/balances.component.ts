@@ -4,6 +4,7 @@ import {MatDialog } from '@angular/material';
 
 import { BalanceApiService } from '../shared/balance-api/balance-api.service';
 import { Balance } from '../shared/balance-api/balance.model';
+import { BalanceCalculateComponent } from '../balance-calculate/balance-calculate.component';
 
 @Component({
   selector: 'app-balances',
@@ -16,19 +17,29 @@ export class BalancesComponent implements OnInit {
   public balancesList: MatTableDataSource<Balance>;
 
   constructor(
-    private balanceApi: BalanceApiService
+    private balanceApi: BalanceApiService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.displayedColums = [ 'startDate', 'endDate', 'totalAmount'];
+    this.loadBalancesList();
+  }
+
+  calculateBalanceDialog() {
+    let dialogRef = this.dialog.open(BalanceCalculateComponent, {
+      data: {  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadBalancesList();
+    });
+  }
+
+  loadBalancesList() {
     this.balanceApi.getBalances()
       .subscribe(data => {
         this.balancesList = new MatTableDataSource<Balance>(data);
       });
   }
-
-  calculateBalanceDialog() {
-    console.error('not implemented');
-  }
-
 }

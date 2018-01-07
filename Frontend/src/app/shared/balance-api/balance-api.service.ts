@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 
-import { Balance } from './balance.model';
+import { Balance, BalanceRequest } from './balance.model';
 
 @Injectable()
 export class BalanceApiService {
@@ -15,12 +15,8 @@ export class BalanceApiService {
     return this.httpClient.get<Balance[]>(this.baseUrl);
   }
 
-  setBalance(newInvoice): void {
-    this.httpClient.post(this.baseUrl, newInvoice)
+  setBalance(balanceTimeRange: BalanceRequest): void {
+    this.httpClient.put(this.baseUrl, balanceTimeRange)
       .subscribe();
-              // .map(res => {
-              //   console.error(res);
-              //   // return new Invoice("5", null, null, null);
-              // });
   }
 }

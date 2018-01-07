@@ -10,3 +10,8 @@ export class BalanceAttendee {
     public User: string;
     public PartialAmount: number;
 }
+
+export class BalanceRequest {
+    public StartDate = new Date().getUTCDate();
+    public EndDate = new Date().getUTCDate();
+}
