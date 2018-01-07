@@ -1,31 +1,33 @@
-<div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-    
-    <mat-header-row *matHeaderRowDef="displayedColums"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
-   
-    <!-- Position Column -->
-    <ng-container matColumnDef="date">
-      <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
-    </ng-container>
+<div class="invoice-component-container">
+  <div class="invoice-table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="invoicesList">
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="user">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.User}} </mat-cell>
-    </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColums"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="amount">
-      <mat-header-cell *matHeaderCellDef> Betrag </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Amount}} </mat-cell>
-    </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+      </ng-container>
 
+      <!-- Name Column -->
+      <ng-container matColumnDef="user">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.User}} </mat-cell>
+      </ng-container>
 
-  </mat-table>
-
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-  </li>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef> Betrag </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Amount}} </mat-cell>
+      </ng-container>
+    </mat-table>
+  </div>
+  
+  <div>
+    <button mat-raised-button class="invoice-table-buttons" (click)="addInvoiceDialog()" color="primary">
+      Add invoice
+    </button>
+  </div>
 </div>

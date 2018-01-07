@@ -11,10 +11,10 @@ import { InvoiceAddComponent } from '../invoice-add/invoice-add.component';
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.css']
 })
-export class InvoicesComponent implements OnInit{
+export class InvoicesComponent implements OnInit {
 
   public displayedColums;
-  public dataSource: MatTableDataSource<Invoice>;
+  public invoicesList: MatTableDataSource<Invoice>;
 
   constructor(
     private invoiceApi: InvoiceApiService,
@@ -23,19 +23,23 @@ export class InvoicesComponent implements OnInit{
 
   ngOnInit() {
     this.displayedColums = [ 'date', 'user', 'amount'];
-    this.invoiceApi.getInvoices().subscribe(data => {
-      this.dataSource = new MatTableDataSource<Invoice>(data);
-    });
+    this.loadInvoiceData();
   }
 
-  openDialog(): void {
+  addInvoiceDialog(): void {
     let dialogRef = this.dialog.open(InvoiceAddComponent, {
       data: {  }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.loadInvoiceData();
       console.log('The dialog was closed');
-      // this.animal = result;
+    });
+  }
+
+  private loadInvoiceData(): void {
+    this.invoiceApi.getInvoices().subscribe(data => {
+      this.invoicesList = new MatTableDataSource<Invoice>(data);
     });
   }
 }

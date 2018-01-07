@@ -30,11 +30,11 @@ import { Invoice } from '../shared/invoice-api/invoice.model';
     </mat-form-field>
 
     <!-- The buttons -->
-    <button mat-button class="input-invoice-buttons" (click)="onAbortClick()" color="primary">
+    <button mat-button class="input-invoice-buttons" (click)="onAbortClick()" type="reset" color="primary">
       Abort
     </button>
 
-    <button mat-raised-button class="input-invoice-buttons" (click)="processInput()" color="primary" style="float: right;">
+    <button mat-raised-button class="input-invoice-buttons" (click)="processInput()" type="submit" color="primary" style="float: right;">
       Accept
     </button>
 
