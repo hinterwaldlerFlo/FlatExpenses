@@ -40,7 +40,7 @@ namespace FlatExpenses.Repository
             var balance = new Balance();
             balance.StartDate = startTime;
             balance.EndDate = endTime;
-            balance.TotalAmout = invoices.Select(x => x.Amount).Sum();
+            balance.TotalAmount = invoices.Select(x => x.Amount).Sum();
             IEnumerable<string> users = invoices.Select(x => x.User)
                                             .Distinct();
             balance.Attendees = users.Select(x =>

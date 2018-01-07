@@ -19,7 +19,8 @@ namespace FlatExpenses.Models
 
         public DateTime SaveDate { get; set; }
 
-        public float TotalAmout { get; set; }
+        [BsonElement("TotalAmout")]
+        public float TotalAmount { get; set; }
 
         public  List<BalanceAttendee> Attendees { get; set; }
     }
