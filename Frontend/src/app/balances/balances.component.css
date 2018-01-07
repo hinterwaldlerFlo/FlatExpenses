@@ -1,0 +1,29 @@
+/* Structure */
+.balance-component-container {
+    max-width: 800px;
+    height: 90vh;
+    vertical-align: middle;
+    margin: 0 auto;
+  }
+  
+  .balance-table-container {
+      display: flex;
+      flex-direction: column;
+      min-width: 300px;
+      height: 80%;
+      margin: 20px;
+    }
+    
+    .mat-table {
+      overflow: auto;
+    }
+  
+    .balance-table-buttons {
+      margin: 30px;
+    }
+    
+    .mat-header-row {
+      position: sticky;
+      top: 0;
+      background: white;
+    }

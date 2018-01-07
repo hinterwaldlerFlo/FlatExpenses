@@ -1,0 +1,33 @@
+<div class="balance-component-container">
+  <div class="balance-table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="balancesList">
+
+      <mat-header-row *matHeaderRowDef="displayedColums"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Anfang </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.StartDate}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> Ende </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.EndDate}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="totalAmount">
+        <mat-header-cell *matHeaderCellDef> Gesamtbetrag </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.TotalAmount}} </mat-cell>
+      </ng-container>
+    </mat-table>
+  </div>
+  
+  <div>
+    <button mat-raised-button class="balance-table-buttons" (click)="calculateBalanceDialog()" color="primary">
+      Calculate balance
+    </button>
+  </div>
+</div>

@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
 import { BalancesComponent } from './balances/balances.component';
+import { BalanceApiService } from './shared/balance-api/balance-api.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,10 @@ import { BalancesComponent } from './balances/balances.component';
   ],
   exports: [
   ],
-  providers: [InvoiceApiService],
+  providers: [
+    InvoiceApiService,
+    BalanceApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
