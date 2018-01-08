@@ -8,13 +8,13 @@
       <!-- Position Column -->
       <ng-container matColumnDef="startDate">
         <mat-header-cell *matHeaderCellDef> Anfang </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.StartDate}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.StartDate | date: 'dd.MM.yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="endDate">
         <mat-header-cell *matHeaderCellDef> Ende </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.EndDate}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.EndDate | date: 'dd.MM.yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
