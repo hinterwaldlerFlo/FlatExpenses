@@ -23,7 +23,7 @@ import {MatInputModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
       </ng-container>
     </table>
     <tr>
-      <td>Gesammtsumme:</td>
+      <td>Gesamtsumme:</td>
       <td>{{ data.row.TotalAmount }}</td>
     </tr>
   </div>
