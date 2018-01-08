@@ -3,7 +3,7 @@
     <mat-table #table [dataSource]="balancesList">
 
       <mat-header-row *matHeaderRowDef="displayedColums"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;" (click)="onRowClick(row)"></mat-row>
 
       <!-- Position Column -->
       <ng-container matColumnDef="startDate">

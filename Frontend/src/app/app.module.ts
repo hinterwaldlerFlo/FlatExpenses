@@ -23,6 +23,7 @@ import { InvoiceAddComponent } from './invoice-add/invoice-add.component';
 import { BalancesComponent } from './balances/balances.component';
 import { BalanceApiService } from './shared/balance-api/balance-api.service';
 import { BalanceCalculateComponent } from './balance-calculate/balance-calculate.component';
+import { BalanceDetailComponent } from './balance-detail/balance-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BalanceCalculateComponent } from './balance-calculate/balance-calculate
     InvoiceAddComponent,
     BalancesComponent,
     BalanceCalculateComponent,
+    BalanceDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,9 @@ import { BalanceCalculateComponent } from './balance-calculate/balance-calculate
     NgbModule.forRoot(),
   ],
   exports: [
+  ],
+  entryComponents: [
+    BalanceDetailComponent
   ],
   providers: [
     InvoiceApiService,

@@ -5,6 +5,7 @@ import {MatDialog } from '@angular/material';
 import { BalanceApiService } from '../shared/balance-api/balance-api.service';
 import { Balance } from '../shared/balance-api/balance.model';
 import { BalanceCalculateComponent } from '../balance-calculate/balance-calculate.component';
+import { BalanceDetailComponent } from '../balance-detail/balance-detail.component';
 
 @Component({
   selector: 'app-balances',
@@ -41,5 +42,14 @@ export class BalancesComponent implements OnInit {
       .subscribe(data => {
         this.balancesList = new MatTableDataSource<Balance>(data);
       });
+  }
+
+  onRowClick(row: any) {
+    let dialogRef = this.dialog.open(BalanceDetailComponent, {
+      data: { row }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }
