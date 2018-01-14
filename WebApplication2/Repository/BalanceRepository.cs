@@ -93,50 +93,85 @@ namespace FlatExpenses.Repository
             var hasMost = attendees.Aggregate((curuMax, x) => (curuMax == null || x.PartialAmountDebit > curuMax.PartialAmountDebit ? x : curuMax));
             var hasFewest = attendees.Aggregate((curMin, x) => (curMin == null || x.PartialAmountDebit < curMin.PartialAmountDebit ? x : curMin));
 
-            // If 'richest' gets more than 'poorest' has
-            if (hasMost.PartialAmountDebit > Math.Abs(hasFewest.PartialAmountDebit))
+            // If 'richest' gets as much or more than 'poorest' has
+            if (hasMost.PartialAmountDebit >= Math.Abs(hasFewest.PartialAmountDebit))
             {
                 // 'poorest' pays everything to 'richest
                 balanceFragments.Add(new BalanceFragment(Math.Abs(hasFewest.PartialAmountDebit), hasMost.User, hasFewest.User));
 
+              
+                var remainigDebit = attendees.Where(a => a.User == hasMost.User).First().PartialAmountDebit - Math.Abs(hasFewest.PartialAmountDebit);
+
+                if (remainigDebit >= 0.01)
+                {
+                    // decrease debit from richest
+                    attendees = attendees.Select(a =>
+                    {
+                        if (a.User == hasMost.User)
+                        {
+                            a.PartialAmountDebit = remainigDebit;
+                            return a;
+                        }
+                        else
+                        {
+                            return a;
+                        }
+                    });
+                }
+                else
+                {
+                    // delete 'richest' form list if rest debit is too little
+                    attendees = attendees.Where(a => a.User != hasMost.User);
+                }
+
                 // delete 'poorest' form list
                 attendees = attendees.Where(a => a.User != hasFewest.User);
-
-                // decrease debit from richest
-                attendees = attendees.Select(a =>
-                {
-                    if (a.User != hasMost.User)
-                    {
-                        a.PartialAmountDebit = a.PartialAmountDebit - Math.Abs(hasFewest.PartialAmountDebit);
-                        return a;
-                    }
-                    else
-                    {
-                        return a;
-                    }
-                });
             }
             else
             {
                 // 'poorest' pays as much as 'richest' gets
                 balanceFragments.Add(new BalanceFragment(hasMost.PartialAmountDebit, hasMost.User, hasFewest.User));
 
+                var remainigDebit = attendees.Where(a => a.User == hasFewest.User).First().PartialAmountDebit + Math.Abs(hasMost.PartialAmountDebit);
+
+                if (remainigDebit >= 0.01)
+                {
+                    // decrease debit from richest
+                    attendees = attendees.Select(a =>
+                    {
+                        if (a.User == hasFewest.User)
+                        {
+                            a.PartialAmountDebit = remainigDebit;
+                            return a;
+                        }
+                        else
+                        {
+                            return a;
+                        }
+                    });
+                }
+                else
+                {
+                    // delete 'richest' form list if rest debit is too little
+                    attendees = attendees.Where(a => a.User != hasMost.User);
+                }
+
                 // delete 'richest' form list
                 attendees = attendees.Where(a => a.User != hasMost.User);
 
-                // decrease debit from 'poorest'
-                attendees = attendees.Select(a =>
-                {
-                    if (a.User != hasFewest.User)
-                    {
-                        a.PartialAmountDebit = a.PartialAmountDebit + hasMost.PartialAmountDebit;
-                        return a;
-                    }
-                    else
-                    {
-                        return a;
-                    }
-                });
+                ////decrease debit from 'poorest'
+                //attendees = attendees.Select(a =>
+                //{
+                //    if (a.User != hasFewest.User)
+                //    {
+                //        a.PartialAmountDebit = a.PartialAmountDebit + hasMost.PartialAmountDebit;
+                //        return a;
+                //    }
+                //    else
+                //    {
+                //        return a;
+                //    }
+                //});
             }
 
             return GetFragments(totalAmount, averagePartialAmount, attendees, balanceFragments);
