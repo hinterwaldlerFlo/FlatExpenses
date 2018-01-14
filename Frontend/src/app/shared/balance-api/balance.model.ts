@@ -11,7 +11,7 @@ export class Balance {
 export class BalanceAttendee {
     public User: string;
     public PartialAmount: number;
-    public BalanceFragments: number;
+    public PartialAmountDebit: number;
 }
 
 export class BalanceFragment {

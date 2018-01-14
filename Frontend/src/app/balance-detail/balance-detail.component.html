@@ -1,27 +1,74 @@
 <div class="balance-detail-popup">
     <h2>Abrechnung</h2>
-    <tr>
-      <td>Anfangsdatum:</td>
-      <td>{{ data.row.StartDate | date: 'dd.MM.yyyy' }}</td>
-    </tr>
-    <tr>
-      <td>Enddatum:</td>
-      <td>{{ data.row.EndDate | date: 'dd.MM.yyyy' }}</td>
-    </tr>
-    <table>
-      <ng-container *ngFor="let Attendee of data.row.Attendees">
-          <tr>
-            <td class="table-cell">{{Attendee.User}}</td>
-            <td class="table-cell">{{Attendee.PartialAmount}}</td>
-          </tr>
-      </ng-container>
+    <table class="overview-table">
+        <tr>
+          <td>Anfangsdatum:</td>
+          <td>{{ data.row.StartDate | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+        <tr>
+          <td>Enddatum:</td>
+          <td>{{ data.row.EndDate | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+        <tr>
+            <td>Gesamtsumme:</td>
+            <td>{{ data.row.TotalAmount | currency:'EUR' }}</td>
+        </tr>
+        <tr>
+            <td>Ausgaben pro Person:</td>
+            <td>{{ data.row.AveragePartialAmount | currency:'EUR' }}</td>
+        </tr>
     </table>
-    <tr>
-      <td>Gesamtsumme:</td>
-      <td>{{ data.row.TotalAmount }}</td>
-    </tr>
-    <tr>
-        <td>Ausgaben pro Person:</td>
-        <td>{{ data.row.AveragePartialAmount | currency:'EUR' }}</td>
-      </tr>
+    <mat-tab-group mat-stretch-tabs>
+        <!-- Tab 1 -->
+        <mat-tab label="Einzelausgaben">
+            <table>
+                <tr>
+                    <th>Benutzer</th>
+                    <th>Ausgaben</th>
+                    <th>Differenz</th>
+                </tr>
+                <ng-container *ngFor="let Attendee of data.row.Attendees">
+                    <tr>
+                        <td class="table-cell">{{Attendee.User}}</td>
+                        <td class="table-cell">{{Attendee.PartialAmount}}</td>
+                        <td class="table-cell">{{Attendee.PartialAmountDebit}}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </mat-tab>
+        <!-- Tab 2 -->
+        <mat-tab label="Muss zahlen">
+            <table>
+                <tr>
+                    <th>Sender</th>
+                    <th>Empfänger</th>
+                    <th>Betrag</th>
+                </tr>
+                <ng-container *ngFor="let Fragment of data.row.BalanceFragments">
+                    <tr>
+                        <td class="table-cell">{{Fragment.SendingUser}}</td>
+                        <td class="table-cell">{{Fragment.ReceivingUser}}</td>
+                        <td class="table-cell">{{Fragment.PartialTransferAmount}}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </mat-tab>
+        <!-- Tab 3 -->
+        <mat-tab label="Bekommt">
+            <table>
+                    <tr>
+                        <th>Empfänger</th>
+                        <th>Sender</th>
+                        <th>Betrag</th>
+                    </tr>
+                    <ng-container *ngFor="let Fragment of data.row.BalanceFragments">
+                        <tr>
+                            <td class="table-cell">{{Fragment.ReceivingUser}}</td>
+                            <td class="table-cell">{{Fragment.SendingUser}}</td>
+                            <td class="table-cell">{{Fragment.PartialTransferAmount}}</td>
+                        </tr>
+                    </ng-container>
+                </table>
+        </mat-tab>
+    </mat-tab-group>
   </div>

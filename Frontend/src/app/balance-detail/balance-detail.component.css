@@ -7,13 +7,15 @@ table, td, th {
 }
 
 table {
-    border-collapse: collapse;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    width: 100%;
+    width: calc(100% - 60px);
     margin: 30px;
 }
 
+.overview-table {
+    border-collapse: collapse;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
 .table-cell {
     padding: 15px;
 }
